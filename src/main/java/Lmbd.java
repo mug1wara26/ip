@@ -29,14 +29,28 @@ public class Lmbd {
   }
 
   private static void mark(int id) {
+    if (id < 0 || id >= tasks.size()) {
+      System.out.println("Invalid id");
+      return;
+    }
     tasks.get(id).mark(true);
 
     System.out.println(String.format("The task \"%s\" has been marked as done.", tasks.get(id).taskTitle()));
   }
 
   private static void unmark(int id) {
-    tasks.get(id).mark(false);
+    if (id < 0 || id >= tasks.size()) {
+      System.out.println("Invalid id");
+      return;
+    }
+    Task t = tasks.get(id);
 
+    if (!t.isDone()) {
+      System.out.println(String.format("Task \"%s\" is not done, unable to unmark", t.taskTitle()));
+      return;
+    }
+
+    t.mark(false);
     System.out.println(String.format("The task \"%s\" has been unmarked as done.", tasks.get(id).taskTitle()));
   }
 

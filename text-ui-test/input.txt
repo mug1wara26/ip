@@ -1,0 +1,20 @@
+todo cs3231
+todo cs2100
+todo borrow book
+deadline return book Sunday
+deadline return book /by Sunday
+event cs3231 tutorial /from fri 2pm /too fri 3pm
+event cs3231 tutorial /fro fri 2pm /to fri 3pm
+event cs3231 tutorial
+event cs3231 tutorial /from fri 2pm /to fri 3pm
+list
+mark 3
+mark 1
+mark 0
+mark 6
+list
+unmark 1
+unmark 2
+list
+bye
+
