@@ -34,8 +34,20 @@ public class Lmbd {
 
   private static void display_list() {
     for (int i = 0; i < tasks.size(); i++) {
-      System.out.println(String.format("%d. %s", i + 1, tasks.get(i)));
+      System.out.println(String.format("%d. [%s] %s", i + 1, tasks.get(i).isDone() ? "X" : " ", tasks.get(i)));
     }
+  }
+
+  private static void mark(int id) {
+    tasks.get(id).mark(true);
+
+    System.out.println(String.format("The task \"%s\" has been marked as done.", tasks.get(id)));
+  }
+
+  private static void unmark(int id) {
+    tasks.get(id).mark(false);
+
+    System.out.println(String.format("The task \"%s\" has been unmarked as done.", tasks.get(id)));
   }
 
   private static void listen() {
@@ -56,6 +68,12 @@ public class Lmbd {
         break;
       case "list":
         display_list();
+        break;
+      case "mark":
+        mark(Integer.valueOf(args[0]) - 1);
+        break;
+      case "unmark":
+        unmark(Integer.valueOf(args[0]) - 1);
         break;
       default:
         print_horizontal_bar();
