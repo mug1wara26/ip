@@ -1,10 +1,14 @@
-public class Task {
+public abstract class Task {
   private String name;
   private boolean done;
 
   public Task(String name) {
     this.name = name;
     this.done = false;
+  }
+
+  public String getName() {
+    return name;
   }
 
   public void mark(boolean done) {
@@ -15,8 +19,12 @@ public class Task {
     return done;
   }
 
+  abstract protected String taskTitle();
+
+  abstract protected char typeChar();
+
   @Override
   public String toString() {
-    return name;
+    return String.format("[%s][%s] %s", typeChar(), done ? "X" : " ", taskTitle());
   }
 }
