@@ -1,7 +1,10 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Lmbd {
+  private static ArrayList<Task> tasks = new ArrayList<>();
+
   public static void main(String[] args) {
     String logo = "██╗     ███╗   ███╗██████╗ ██████╗ \n"
         + "██║     ████╗ ████║██╔══██╗██╔══██╗\n"
@@ -20,8 +23,19 @@ public class Lmbd {
   }
 
   private static void greet() {
-    print_horizontal_bar();
     System.out.println("Hello! I'm LMBD. What can I do for you?");
+  }
+
+  private static void exit() {
+    System.out.println("Bye. Hope to see you again soon!");
+    print_horizontal_bar();
+    System.exit(0);
+  }
+
+  private static void display_list() {
+    for (int i = 0; i < tasks.size(); i++) {
+      System.out.println(String.format("%d. %s", i + 1, tasks.get(i)));
+    }
   }
 
   private static void listen() {
@@ -35,19 +49,20 @@ public class Lmbd {
   }
 
   private static void handle_command(String cmd, String[] args) {
+    print_horizontal_bar();
     switch (cmd) {
       case "bye":
         exit();
+        break;
+      case "list":
+        display_list();
+        break;
       default:
         print_horizontal_bar();
-        System.out.println(cmd + " " + String.join(" ", args));
+        String name = cmd + " " + String.join(" ", args);
+        System.out.println(String.format("added: %s", name));
+        tasks.add(new Task(name));
+        break;
     }
-  }
-
-  private static void exit() {
-    print_horizontal_bar();
-    System.out.println("Bye. Hope to see you again soon!");
-    print_horizontal_bar();
-    System.exit(0);
   }
 }
