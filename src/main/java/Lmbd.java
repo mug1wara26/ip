@@ -55,6 +55,10 @@ public class Lmbd {
   }
 
   private static void new_todo(String[] args) {
+    if (args.length == 0) {
+      System.out.println("TODO task requires a name");
+      return;
+    }
     String name = String.join(" ", args);
     tasks.add(new Todo(name));
     System.out.println(String.format("Added the TODO task %s, you now have %d tasks.", name, tasks.size()));
@@ -128,6 +132,16 @@ public class Lmbd {
         .println(String.format("Added the DEADLINE task %s, you now have %d tasks.", t.taskTitle(), tasks.size()));
   }
 
+  public static void remove(int id) {
+    if (id < 0 || id >= tasks.size()) {
+      System.out.println("Invalid id");
+      return;
+    }
+    Task t = tasks.remove(id);
+
+    System.out.println(String.format("The task \"%s\" has been removed.", t.taskTitle()));
+  }
+
   private static void listen() {
     while (true) {
       print_horizontal_bar();
@@ -161,6 +175,11 @@ public class Lmbd {
       case "deadline":
         new_deadline(args);
         break;
+      case "remove":
+        remove(Integer.valueOf(args[0]) - 1);
+        break;
+      default:
+        System.out.println(String.format("Unrecognised command \"%s\"", cmd));
     }
   }
 
