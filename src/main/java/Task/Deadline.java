@@ -1,3 +1,5 @@
+package Task;
+
 public class Deadline extends Task {
   private String by;
 
@@ -7,7 +9,7 @@ public class Deadline extends Task {
   }
 
   @Override
-  protected String taskTitle() {
+  public String taskTitle() {
     return String.format("%s (by: %s)", getName(), by);
   }
 

@@ -1,0 +1,23 @@
+package Command;
+
+import Lmbd.Lmbd;
+import Task.Task;
+
+public class RemoveCommand extends Command {
+  public RemoveCommand() {
+    super("remove", 1, "Removes the task from the list with the associated number");
+  }
+
+  @Override
+  void call_(Lmbd lmbd, String[] args) {
+    int id = Integer.valueOf(args[0]);
+    if (id < 0 || id >= lmbd.task_size()) {
+      System.out.println("Invalid id");
+      return;
+    }
+    Task t = lmbd.remove_task(id);
+
+    System.out.println(String.format("The task \"%s\" has been removed.", t.taskTitle()));
+
+  }
+}

@@ -1,3 +1,5 @@
+package Task;
+
 public abstract class Task {
   private String name;
   private boolean done;
@@ -19,7 +21,7 @@ public abstract class Task {
     return done;
   }
 
-  abstract protected String taskTitle();
+  abstract public String taskTitle();
 
   abstract protected char typeChar();
 

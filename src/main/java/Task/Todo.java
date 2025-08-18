@@ -1,10 +1,12 @@
+package Task;
+
 public class Todo extends Task {
   public Todo(String name) {
     super(name);
   }
 
   @Override
-  protected String taskTitle() {
+  public String taskTitle() {
     return getName();
   }
 

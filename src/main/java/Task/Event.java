@@ -1,3 +1,5 @@
+package Task;
+
 public class Event extends Task {
   private String from;
   private String to;
@@ -9,7 +11,7 @@ public class Event extends Task {
   }
 
   @Override
-  protected String taskTitle() {
+  public String taskTitle() {
     return String.format("%s (from: %s, to: %s)", getName(), from, to);
   }
 

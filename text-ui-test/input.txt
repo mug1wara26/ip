@@ -1,3 +1,7 @@
+help
+help mark
+help list
+help test
 todo
 todo cs3231
 todo cs2100
@@ -9,6 +13,7 @@ event cs3231 tutorial /fro fri 2pm /to fri 3pm
 event cs3231 tutorial
 event cs3231 tutorial /from fri 2pm /to fri 3pm
 list
+mark
 mark 3
 mark 1
 mark 0
