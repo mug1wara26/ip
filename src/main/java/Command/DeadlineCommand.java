@@ -1,6 +1,10 @@
 package Command;
 
 import Task.Task;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import Lmbd.Lmbd;
 import Task.Deadline;
 
@@ -32,7 +36,15 @@ public class DeadlineCommand extends Command {
     }
     by.deleteCharAt(by.length() - 1);
 
-    Task t = new Deadline(name.toString(), by.toString());
+    LocalDate by_date;
+    try {
+      by_date = LocalDate.parse(by);
+    } catch (DateTimeParseException e) {
+      System.out.println("Expected a date in YYYY-MM-DD format");
+      return;
+    }
+
+    Task t = new Deadline(name.toString(), by_date);
     lmbd.TASKS.add_task(t);
     System.out
         .println(

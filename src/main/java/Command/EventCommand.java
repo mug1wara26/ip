@@ -1,5 +1,8 @@
 package Command;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import Lmbd.Lmbd;
 import Task.Event;
 import Task.Task;
@@ -45,7 +48,22 @@ public class EventCommand extends Command {
     }
     to.deleteCharAt(to.length() - 1);
 
-    Task t = new Event(name.toString(), from.toString(), to.toString());
+    LocalDate from_date;
+    try {
+      from_date = LocalDate.parse(from);
+    } catch (DateTimeParseException e) {
+      System.out.println("Expected \"from\" to be in YYYY-MM-DD format");
+      return;
+    }
+    LocalDate to_date;
+    try {
+      to_date = LocalDate.parse(to);
+    } catch (DateTimeParseException e) {
+      System.out.println("Expected \"to\" to be in YYYY-MM-DD format");
+      return;
+    }
+
+    Task t = new Event(name.toString(), from_date, to_date);
     lmbd.TASKS.add_task(t);
     System.out
         .println(

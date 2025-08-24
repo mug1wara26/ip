@@ -1,10 +1,13 @@
 package Task;
 
-public class Event extends Task {
-  private String from;
-  private String to;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
-  public Event(String name, String from, String to) {
+public class Event extends Task {
+  private LocalDate from;
+  private LocalDate to;
+
+  public Event(String name, LocalDate from, LocalDate to) {
     super(name);
     this.from = from;
     this.to = to;
@@ -12,7 +15,8 @@ public class Event extends Task {
 
   @Override
   public String taskTitle() {
-    return String.format("%s (from: %s, to: %s)", getName(), from, to);
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
+    return String.format("%s (from: %s, to: %s)", getName(), from.format(formatter), to.format(formatter));
   }
 
   @Override
