@@ -1,8 +1,14 @@
 package Task;
 
-public abstract class Task {
+import java.io.IOException;
+import java.io.Serializable;
+
+import Lmbd.TaskList;
+
+public abstract class Task implements Serializable {
   private String name;
   private boolean done;
+  private TaskList tl;
 
   public Task(String name) {
     this.name = name;
@@ -15,6 +21,15 @@ public abstract class Task {
 
   public void mark(boolean done) {
     this.done = done;
+    try {
+      tl.save();
+    } catch (IOException e) {
+      System.out.println("Unable to backup task list, your data might be lost.");
+    }
+  }
+
+  public void associateList(TaskList tl) {
+    this.tl = tl;
   }
 
   public boolean isDone() {

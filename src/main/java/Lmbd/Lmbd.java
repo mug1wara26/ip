@@ -8,9 +8,20 @@ import java.util.Scanner;
 import Command.*;
 
 public class Lmbd {
-  public final TaskList TASKS = new TaskList();
+  public final TaskList TASKS;
   private Scanner sc = new Scanner(System.in);
   public final Map<String, Command> commands = new HashMap<>();
+
+  public Lmbd() {
+    TaskList temp;
+    try {
+      temp = TaskList.load();
+    } catch (Exception e) {
+      temp = new TaskList();
+    }
+
+    TASKS = temp;
+  }
 
   public void close_sc() {
     sc.close();
@@ -43,5 +54,4 @@ public class Lmbd {
 
     command.call(this, args);
   }
-
 }
