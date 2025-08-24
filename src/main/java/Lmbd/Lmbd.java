@@ -1,37 +1,19 @@
 package Lmbd;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import Task.*;
 import Command.*;
 
 public class Lmbd {
-  private ArrayList<Task> tasks = new ArrayList<>();
+  public final TaskList TASKS = new TaskList();
   private Scanner sc = new Scanner(System.in);
   public final Map<String, Command> commands = new HashMap<>();
 
   public void close_sc() {
     sc.close();
-  }
-
-  public int task_size() {
-    return tasks.size();
-  }
-
-  public Task get_task(int id) {
-    return tasks.get(id);
-  }
-
-  public void add_task(Task t) {
-    tasks.add(t);
-  }
-
-  public Task remove_task(int id) {
-    return tasks.remove(id);
   }
 
   public void print_horizontal_bar() {

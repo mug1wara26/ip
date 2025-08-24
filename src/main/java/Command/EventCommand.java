@@ -46,8 +46,9 @@ public class EventCommand extends Command {
     to.deleteCharAt(to.length() - 1);
 
     Task t = new Event(name.toString(), from.toString(), to.toString());
-    lmbd.add_task(t);
+    lmbd.TASKS.add_task(t);
     System.out
-        .println(String.format("Added the EVENT task %s, you now have %d tasks.", t.taskTitle(), lmbd.task_size()));
+        .println(
+            String.format("Added the EVENT task %s, you now have %d tasks.", t.taskTitle(), lmbd.TASKS.task_size()));
   }
 }

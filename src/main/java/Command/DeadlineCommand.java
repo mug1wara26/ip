@@ -33,8 +33,9 @@ public class DeadlineCommand extends Command {
     by.deleteCharAt(by.length() - 1);
 
     Task t = new Deadline(name.toString(), by.toString());
-    lmbd.add_task(t);
+    lmbd.TASKS.add_task(t);
     System.out
-        .println(String.format("Added the DEADLINE task %s, you now have %d tasks.", t.taskTitle(), lmbd.task_size()));
+        .println(
+            String.format("Added the DEADLINE task %s, you now have %d tasks.", t.taskTitle(), lmbd.TASKS.task_size()));
   }
 }

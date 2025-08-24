@@ -11,11 +11,11 @@ public class Mark extends Command {
   @Override
   void call_(Lmbd lmbd, String[] args) {
     int id = Integer.valueOf(args[0]) - 1;
-    if (id < 0 || id >= lmbd.task_size()) {
+    if (id < 0 || id >= lmbd.TASKS.task_size()) {
       System.out.println("Invalid id");
       return;
     }
-    Task t = lmbd.get_task(id);
+    Task t = lmbd.TASKS.get_task(id);
     if (t.isDone()) {
       System.out.println(String.format("Task \"%s\" is already done, unable to mark", t.taskTitle()));
       return;
