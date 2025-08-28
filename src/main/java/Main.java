@@ -21,11 +21,12 @@ public class Main {
         new TodoCommand(),
         new EventCommand(),
         new DeadlineCommand(),
-        new RemoveCommand()
+        new RemoveCommand(),
+        new FindCommand()
     };
 
     for (Command command : cmds) {
-      lmbd.commands.put(command.get_cmd(), command);
+      lmbd.commands.put(command.getCmd(), command);
     }
 
     lmbd.greet();

@@ -7,6 +7,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A class storing a list of Tasks, is serializable and handles saving and
@@ -67,5 +69,9 @@ public class TaskList implements Serializable {
     objectInputStream.close();
 
     return ret;
+  }
+
+  public List<Task> find(String pattern) {
+    return tasks.stream().filter(x -> x.match(pattern)).collect(Collectors.toList());
   }
 }

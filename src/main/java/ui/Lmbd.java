@@ -31,12 +31,12 @@ public class Lmbd {
   }
 
   /** Closes the scanner used by this object */
-  public void close_sc() {
+  public void closeSc() {
     sc.close();
   }
 
   /** Prints a horizontal bar */
-  public void print_horizontal_bar() {
+  public void printHorizontalBar() {
     System.out.println("____________________________________________________________");
   }
 
@@ -48,15 +48,15 @@ public class Lmbd {
   /** Starts listening for commands from stdin */
   public void listen() {
     while (true) {
-      print_horizontal_bar();
+      printHorizontalBar();
       System.out.print("$ ");
       String[] in = sc.nextLine().split(" ");
-      handle_command(in[0], Arrays.copyOfRange(in, 1, in.length));
+      handleCommand(in[0], Arrays.copyOfRange(in, 1, in.length));
     }
   }
 
-  private void handle_command(String cmd_string, String[] args) {
-    print_horizontal_bar();
+  private void handleCommand(String cmd_string, String[] args) {
+    printHorizontalBar();
     Command command = commands.getOrDefault(cmd_string, null);
     if (command == null) {
       System.out.println(String.format("Unrecognised command: %s", cmd_string));

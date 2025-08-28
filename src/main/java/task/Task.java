@@ -2,6 +2,7 @@ package task;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.regex.Pattern;
 
 /**
  * The Task class represents tasks that have a name and whether it is marked as
@@ -47,6 +48,10 @@ public abstract class Task implements Serializable {
   /** Whether this task is marked as done or not */
   public boolean isDone() {
     return done;
+  }
+
+  public boolean match(String pattern) {
+    return Pattern.matches(pattern, name);
   }
 
   /** The title of this task */

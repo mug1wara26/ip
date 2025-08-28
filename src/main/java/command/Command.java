@@ -4,13 +4,13 @@ import ui.Lmbd;
 
 public abstract class Command {
   private String cmd;
-  private String help_text;
-  private int num_required_args;
+  private String helpText;
+  private int numRequiredArgs;
 
-  public Command(String cmd, int num_required_args, String help_text) {
+  public Command(String cmd, int numRequiredArgs, String help_text) {
     this.cmd = cmd;
-    this.num_required_args = num_required_args;
-    this.help_text = help_text;
+    this.numRequiredArgs = numRequiredArgs;
+    this.helpText = help_text;
   }
 
   /**
@@ -20,8 +20,8 @@ public abstract class Command {
    * @param args An array of arguments following the command, separated by spaces
    */
   public void call(Lmbd lmbd, String[] args) {
-    if (args.length < num_required_args)
-      System.out.println(String.format("%s command requires at least %d args", cmd, num_required_args));
+    if (args.length < numRequiredArgs)
+      System.out.println(String.format("%s command requires at least %d args", cmd, numRequiredArgs));
     else
       call_(lmbd, args);
   }
@@ -29,12 +29,12 @@ public abstract class Command {
   abstract void call_(Lmbd lmbd, String[] args);
 
   /** Returns the help text for this command */
-  public String get_help_text() {
-    return help_text;
+  public String getHelpText() {
+    return helpText;
   }
 
   /** Returns the string that calls this command */
-  public String get_cmd() {
+  public String getCmd() {
     return cmd;
   }
 }

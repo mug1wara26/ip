@@ -12,10 +12,10 @@ public class Help extends Command {
     if (args.length == 0) {
       System.out.println("Here are a list of commands:");
       for (Command cmd : lmbd.commands.values()) {
-        System.out.println(String.format("%s - %s", cmd.get_cmd(), cmd.get_help_text()));
+        System.out.println(String.format("%s - %s", cmd.getCmd(), cmd.getHelpText()));
       }
     } else if (lmbd.commands.containsKey(args[0])) {
-      System.out.println(lmbd.commands.get(args[0]).get_help_text());
+      System.out.println(lmbd.commands.get(args[0]).getHelpText());
     } else {
       System.out.println(String.format("Command %s not found", args[0]));
     }
