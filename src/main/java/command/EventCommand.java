@@ -1,11 +1,11 @@
-package Command;
+package command;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import Lmbd.Lmbd;
-import Task.Event;
-import Task.Task;
+import task.Event;
+import task.Task;
+import ui.Lmbd;
 
 public class EventCommand extends Command {
   public EventCommand() {

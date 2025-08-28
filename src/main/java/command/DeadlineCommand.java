@@ -1,12 +1,12 @@
-package Command;
+package command;
 
-import Task.Task;
+import ui.Lmbd;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
-import Lmbd.Lmbd;
-import Task.Deadline;
+import task.Deadline;
+import task.Task;
 
 public class DeadlineCommand extends Command {
   public DeadlineCommand() {

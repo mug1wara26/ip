@@ -1,6 +1,6 @@
-package Command;
+package command;
 
-import Lmbd.Lmbd;
+import ui.Lmbd;
 
 public class Bye extends Command {
   public Bye() {

@@ -1,5 +1,5 @@
-import Lmbd.Lmbd;
-import Command.*;
+import command.*;
+import ui.Lmbd;
 
 public class Main {
   public static void main(String[] args) {

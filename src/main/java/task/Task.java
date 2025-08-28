@@ -1,9 +1,7 @@
-package Task;
+package task;
 
 import java.io.IOException;
 import java.io.Serializable;
-
-import Lmbd.TaskList;
 
 public abstract class Task implements Serializable {
   private String name;

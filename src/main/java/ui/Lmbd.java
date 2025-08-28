@@ -1,11 +1,12 @@
-package Lmbd;
+package ui;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import Command.*;
+import command.*;
+import task.TaskList;
 
 public class Lmbd {
   public final TaskList TASKS;

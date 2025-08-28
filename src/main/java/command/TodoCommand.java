@@ -1,7 +1,7 @@
-package Command;
+package command;
 
-import Lmbd.Lmbd;
-import Task.Todo;
+import task.Todo;
+import ui.Lmbd;
 
 public class TodoCommand extends Command {
   public TodoCommand() {

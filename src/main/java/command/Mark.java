@@ -1,7 +1,7 @@
-package Command;
+package command;
 
-import Lmbd.Lmbd;
-import Task.Task;
+import task.Task;
+import ui.Lmbd;
 
 public class Mark extends Command {
   public Mark() {

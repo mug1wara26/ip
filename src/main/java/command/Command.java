@@ -1,6 +1,6 @@
-package Command;
+package command;
 
-import Lmbd.Lmbd;
+import ui.Lmbd;
 
 public abstract class Command {
   private String cmd;
