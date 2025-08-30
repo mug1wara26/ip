@@ -1,11 +1,12 @@
 package ui;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import command.*;
+import command.Command;
 import task.TaskList;
 import utils.Storage;
 
@@ -18,9 +19,9 @@ public class Lmbd {
    * A map between a String representing the command and the corresponding Command
    * object
    */
-  public final Map<String, Command> commands = new HashMap<>();
+  private final Map<String, Command> commands = new HashMap<>();
 
-  public Lmbd() {
+  public Lmbd(Command... cmds) {
     TaskList temp;
     try {
       temp = Storage.load();
@@ -29,6 +30,22 @@ public class Lmbd {
     }
 
     TASKS = temp;
+
+    for (Command command : cmds) {
+      commands.put(command.getCmd(), command);
+    }
+  }
+
+  public Collection<Command> getCommands() {
+    return commands.values();
+  }
+
+  public Command getCommand(String cmdName) {
+    return commands.get(cmdName);
+  }
+
+  public boolean isCommand(String cmdName) {
+    return commands.containsKey(cmdName);
   }
 
   /** Closes the scanner used by this object */

@@ -11,11 +11,10 @@ public class Main {
         + "╚══════╝╚═╝     ╚═╝╚═════╝ ╚═════╝ \n";
     System.out.println(logo);
 
-    Lmbd lmbd = new Lmbd();
     Command[] cmds = new Command[] {
         new Help(),
         new Bye(),
-        new DisplayList(),
+        new ListCommand(),
         new Mark(),
         new UnmarkCommand(),
         new TodoCommand(),
@@ -24,10 +23,7 @@ public class Main {
         new RemoveCommand(),
         new FindCommand()
     };
-
-    for (Command command : cmds) {
-      lmbd.commands.put(command.getCmd(), command);
-    }
+    Lmbd lmbd = new Lmbd(cmds);
 
     lmbd.greet();
     lmbd.listen();
