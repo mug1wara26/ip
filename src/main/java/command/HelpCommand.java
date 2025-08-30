@@ -2,8 +2,8 @@ package command;
 
 import ui.Lmbd;
 
-public class Help extends Command {
-  public Help() {
+public class HelpCommand extends Command {
+  public HelpCommand() {
     super("help", 0, "Gives a helpful description of a command");
   }
 

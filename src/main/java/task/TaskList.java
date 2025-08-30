@@ -42,6 +42,10 @@ public class TaskList implements Serializable {
     return m != isMarked;
   }
 
+  public boolean isMarked(int index) {
+    return tasks.get(index).isDone();
+  }
+
   public String getTaskTitle(int index) {
     return tasks.get(index).taskTitle();
   }

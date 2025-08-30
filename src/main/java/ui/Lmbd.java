@@ -68,8 +68,12 @@ public class Lmbd {
     while (true) {
       printHorizontalBar();
       System.out.print("$ ");
-      String[] in = sc.nextLine().split(" ");
-      handleCommand(in[0], Arrays.copyOfRange(in, 1, in.length));
+      if (sc.hasNextLine()) {
+        String[] in = sc.nextLine().split(" ");
+        handleCommand(in[0], Arrays.copyOfRange(in, 1, in.length));
+      } else {
+        break;
+      }
     }
   }
 

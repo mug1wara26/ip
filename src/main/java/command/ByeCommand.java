@@ -2,8 +2,8 @@ package command;
 
 import ui.Lmbd;
 
-public class Bye extends Command {
-  public Bye() {
+public class ByeCommand extends Command {
+  public ByeCommand() {
     super("bye", 0, "Exits the program");
   }
 

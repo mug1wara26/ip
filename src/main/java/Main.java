@@ -12,8 +12,8 @@ public class Main {
     System.out.println(logo);
 
     Command[] cmds = new Command[] {
-        new Help(),
-        new Bye(),
+        new HelpCommand(),
+        new ByeCommand(),
         new ListCommand(),
         new MarkCommand(),
         new UnmarkCommand(),
