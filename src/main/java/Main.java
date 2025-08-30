@@ -15,7 +15,7 @@ public class Main {
         new Help(),
         new Bye(),
         new ListCommand(),
-        new Mark(),
+        new MarkCommand(),
         new UnmarkCommand(),
         new TodoCommand(),
         new EventCommand(),

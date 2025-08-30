@@ -2,8 +2,8 @@ package command;
 
 import ui.Lmbd;
 
-public class Mark extends Command {
-  public Mark() {
+public class MarkCommand extends Command {
+  public MarkCommand() {
     super("mark", 1, "Marks the task associated with the number as done");
   }
 
