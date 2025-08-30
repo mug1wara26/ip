@@ -29,6 +29,11 @@ public class Storage {
     return load(SAVE_PATH);
   }
 
+  /**
+   * Deserialises the TaskList from the specified save file
+   *
+   * @return Deserialised TaskList
+   */
   public static TaskList load(String saveFile) throws IOException, ClassNotFoundException {
     FileInputStream fileInputStream = new FileInputStream(saveFile);
     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);

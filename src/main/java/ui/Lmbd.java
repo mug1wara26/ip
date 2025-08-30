@@ -22,10 +22,18 @@ public class Lmbd {
   private final Map<String, Command> commands = new HashMap<>();
   private boolean exit = false;
 
+  /**
+   * Creates a Lmbd object from the specified commands
+   * Uses the default lmbd.save file
+   */
   public Lmbd(Command... cmds) {
     this("lmbd.save", cmds);
   }
 
+  /**
+   * Creates a Lmbd object from the specified commands
+   * Uses the specified save file
+   */
   public Lmbd(String saveFile, Command... cmds) {
     TaskList temp;
     try {
@@ -41,14 +49,20 @@ public class Lmbd {
     }
   }
 
+  /** Returns the commands stored in this Lmbd object */
   public Collection<Command> getCommands() {
     return commands.values();
   }
 
+  /** Returns the command associated with the given command name */
   public Command getCommand(String cmdName) {
     return commands.get(cmdName);
   }
 
+  /**
+   * Returns a boolean indicating if the given command name is stored in this
+   * object
+   */
   public boolean isCommand(String cmdName) {
     return commands.containsKey(cmdName);
   }
