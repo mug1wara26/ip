@@ -11,6 +11,7 @@ $ ____________________________________________________________
 Here are a list of commands:
 todo - Creates a new TODO task
 help - Gives a helpful description of a command
+find - Finds all tasks with a name matching the regex pattern
 list - Displays the list of tasks
 event - Creates a new EVENT task
 deadline - Creates a new DEADLINE task
@@ -44,7 +45,10 @@ $ ____________________________________________________________
 Expected /by, reached end of line instead
 ____________________________________________________________
 $ ____________________________________________________________
-Added the DEADLINE task return book (by: Sunday), you now have 4 tasks.
+Expected a date in YYYY-MM-DD format
+____________________________________________________________
+$ ____________________________________________________________
+Added the DEADLINE task return book (by: Sept 11 2025), you now have 4 tasks.
 ____________________________________________________________
 $ ____________________________________________________________
 Expected /to, reached end of line instead
@@ -56,15 +60,21 @@ $ ____________________________________________________________
 Expected /from, reached end of line instead
 ____________________________________________________________
 $ ____________________________________________________________
-Added the EVENT task cs3231 tutorial (from: fri 2pm, to: fri 3pm), you now have 5 tasks.
+Expected "from" to be in YYYY-MM-DD format
+____________________________________________________________
+$ ____________________________________________________________
+Expected "to" to be in YYYY-MM-DD format
+____________________________________________________________
+$ ____________________________________________________________
+Added the EVENT task cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025), you now have 5 tasks.
 ____________________________________________________________
 $ ____________________________________________________________
 You have 5 tasks:
 1. [T][ ] cs3231
 2. [T][ ] cs2100
 3. [T][ ] borrow book
-4. [D][ ] return book (by: Sunday)
-5. [E][ ] cs3231 tutorial (from: fri 2pm, to: fri 3pm)
+4. [D][ ] return book (by: Sept 11 2025)
+5. [E][ ] cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025)
 ____________________________________________________________
 $ ____________________________________________________________
 mark command requires at least 1 args
@@ -89,11 +99,11 @@ You have 5 tasks:
 1. [T][X] cs3231
 2. [T][ ] cs2100
 3. [T][X] borrow book
-4. [D][ ] return book (by: Sunday)
-5. [E][ ] cs3231 tutorial (from: fri 2pm, to: fri 3pm)
+4. [D][ ] return book (by: Sept 11 2025)
+5. [E][ ] cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025)
 ____________________________________________________________
 $ ____________________________________________________________
-The task "cs3231" has been unmarked as done.
+The task "cs3231" has been unmarked.
 ____________________________________________________________
 $ ____________________________________________________________
 Task "cs2100" is not done, unable to unmark
@@ -103,11 +113,11 @@ You have 5 tasks:
 1. [T][ ] cs3231
 2. [T][ ] cs2100
 3. [T][X] borrow book
-4. [D][ ] return book (by: Sunday)
-5. [E][ ] cs3231 tutorial (from: fri 2pm, to: fri 3pm)
+4. [D][ ] return book (by: Sept 11 2025)
+5. [E][ ] cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025)
 ____________________________________________________________
 $ ____________________________________________________________
-The task "return book (by: Sunday)" has been removed.
+The task "return book (by: Sept 11 2025)" has been removed.
 ____________________________________________________________
 $ ____________________________________________________________
 The task "borrow book" has been removed.
@@ -119,7 +129,18 @@ $ ____________________________________________________________
 You have 3 tasks:
 1. [T][ ] cs3231
 2. [T][ ] cs2100
-3. [E][ ] cs3231 tutorial (from: fri 2pm, to: fri 3pm)
+3. [E][ ] cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025)
+____________________________________________________________
+$ ____________________________________________________________
+____________________________________________________________
+$ ____________________________________________________________
+1. [T][ ] cs3231
+2. [T][ ] cs2100
+3. [E][ ] cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025)
+____________________________________________________________
+$ ____________________________________________________________
+1. [T][ ] cs3231
+2. [E][ ] cs3231 tutorial (from: Sept 1 2025, to: Sept 2 2025)
 ____________________________________________________________
 $ ____________________________________________________________
 Bye. Hope to see you again soon!

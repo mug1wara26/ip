@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import command.*;
 import task.TaskList;
+import utils.Storage;
 
 /** The main chatbot class, start the bot by calling the listen function */
 public class Lmbd {
@@ -22,7 +23,7 @@ public class Lmbd {
   public Lmbd() {
     TaskList temp;
     try {
-      temp = TaskList.load();
+      temp = Storage.load();
     } catch (Exception e) {
       temp = new TaskList();
     }

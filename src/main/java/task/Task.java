@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
+import utils.Storage;
+
 /**
  * The Task class represents tasks that have a name and whether it is marked as
  * done or not. Task objects must call the associateList function after
@@ -31,7 +33,7 @@ public abstract class Task implements Serializable {
   public void mark(boolean done) {
     this.done = done;
     try {
-      tl.save();
+      Storage.save(tl);
     } catch (IOException e) {
       System.out.println("Unable to backup task list, your data might be lost.");
     }

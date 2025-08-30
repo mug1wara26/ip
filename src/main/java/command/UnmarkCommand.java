@@ -1,6 +1,5 @@
 package command;
 
-import task.Task;
 import ui.Lmbd;
 
 public class UnmarkCommand extends Command {
@@ -11,18 +10,18 @@ public class UnmarkCommand extends Command {
   @Override
   void call_(Lmbd lmbd, String[] args) {
     int id = Integer.valueOf(args[0]) - 1;
-    if (id < 0 || id >= lmbd.TASKS.task_size()) {
+    if (id < 0 || id >= lmbd.TASKS.getTaskSize()) {
       System.out.println("Invalid id");
       return;
     }
-    Task t = lmbd.TASKS.get_task(id);
 
-    if (!t.isDone()) {
-      System.out.println(String.format("Task \"%s\" is not done, unable to unmark", t.taskTitle()));
+    boolean success = lmbd.TASKS.mark(id, false);
+
+    if (!success) {
+      System.out.println(String.format("Task \"%s\" is not done, unable to unmark", lmbd.TASKS.getTaskTitle(id)));
       return;
     }
 
-    t.mark(false);
-    System.out.println(String.format("The task \"%s\" has been unmarked as done.", t.taskTitle()));
+    System.out.println(String.format("The task \"%s\" has been unmarked.", lmbd.TASKS.getTaskTitle(id)));
   }
 }

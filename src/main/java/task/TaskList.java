@@ -1,14 +1,12 @@
 package task;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import utils.Storage;
 
 /**
  * A class storing a list of Tasks, is serializable and handles saving and
@@ -16,59 +14,45 @@ import java.util.stream.Collectors;
  */
 public class TaskList implements Serializable {
   private ArrayList<Task> tasks;
-  private static final String SAVE_PATH = "lmbd.save";
 
   public TaskList() {
     tasks = new ArrayList<>();
   }
 
   /** Get number of tasks in the list */
-  public int task_size() {
+  public int getTaskSize() {
     return tasks.size();
   }
 
-  /** Get a task from the given index in the list */
-  public Task get_task(int index) {
-    return tasks.get(index);
-  }
-
   /** Adds the given Task object to the list */
-  public void add_task(Task t) {
+  public void addTask(Task t) {
     t.associateList(this);
     tasks.add(t);
     try {
-      save();
+      Storage.save(this);
     } catch (IOException e) {
       System.out.println("Unable to backup task list, your data might be lost.");
     }
   }
 
+  public boolean mark(int index, boolean isMarked) {
+    boolean m = tasks.get(index).isDone();
+    tasks.get(index).mark(isMarked);
+
+    return m != isMarked;
+  }
+
+  public String getTaskTitle(int index) {
+    return tasks.get(index).taskTitle();
+  }
+
+  public String getTaskToString(int index) {
+    return tasks.get(index).toString();
+  }
+
   /** Removes the task from the list at the given index */
-  public Task remove_task(int index) {
+  public Task removeTask(int index) {
     return tasks.remove(index);
-  }
-
-  /** Serialises and writes to a save file named lmbd.save */
-  public void save() throws IOException {
-    FileOutputStream fileOutputStream = new FileOutputStream(SAVE_PATH);
-    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-    objectOutputStream.writeObject(this);
-    objectOutputStream.flush();
-    objectOutputStream.close();
-  }
-
-  /**
-   * Deserialises the TaskList from the lmbd.save file
-   *
-   * @return Deserialised TaskList
-   */
-  public static TaskList load() throws IOException, ClassNotFoundException {
-    FileInputStream fileInputStream = new FileInputStream(SAVE_PATH);
-    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-    TaskList ret = (TaskList) objectInputStream.readObject();
-    objectInputStream.close();
-
-    return ret;
   }
 
   public List<Task> find(String pattern) {

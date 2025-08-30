@@ -11,11 +11,11 @@ public class RemoveCommand extends Command {
   @Override
   void call_(Lmbd lmbd, String[] args) {
     int id = Integer.valueOf(args[0]);
-    if (id < 0 || id >= lmbd.TASKS.task_size()) {
+    if (id < 0 || id >= lmbd.TASKS.getTaskSize()) {
       System.out.println("Invalid id");
       return;
     }
-    Task t = lmbd.TASKS.remove_task(id);
+    Task t = lmbd.TASKS.removeTask(id);
 
     System.out.println(String.format("The task \"%s\" has been removed.", t.taskTitle()));
 
