@@ -20,13 +20,18 @@ public class Lmbd {
    * object
    */
   private final Map<String, Command> commands = new HashMap<>();
+  private boolean exit = false;
 
   public Lmbd(Command... cmds) {
+    this("lmbd.save", cmds);
+  }
+
+  public Lmbd(String saveFile, Command... cmds) {
     TaskList temp;
     try {
-      temp = Storage.load();
+      temp = Storage.load(saveFile);
     } catch (Exception e) {
-      temp = new TaskList();
+      temp = new TaskList(saveFile);
     }
 
     TASKS = temp;
@@ -48,11 +53,6 @@ public class Lmbd {
     return commands.containsKey(cmdName);
   }
 
-  /** Closes the scanner used by this object */
-  public void closeSc() {
-    sc.close();
-  }
-
   /** Prints a horizontal bar */
   public void printHorizontalBar() {
     System.out.println("____________________________________________________________");
@@ -63,9 +63,15 @@ public class Lmbd {
     System.out.println("Hello! I'm LMBD. What can I do for you?");
   }
 
+  /** Closes the chatbot */
+  public void exit() {
+    exit = true;
+    sc.close();
+  }
+
   /** Starts listening for commands from stdin */
   public void listen() {
-    while (true) {
+    while (!exit) {
       printHorizontalBar();
       System.out.print("$ ");
       if (sc.hasNextLine()) {

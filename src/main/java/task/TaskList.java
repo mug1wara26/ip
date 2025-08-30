@@ -9,14 +9,23 @@ import java.util.stream.Collectors;
 import utils.Storage;
 
 /**
- * A class storing a list of Tasks, is serializable and handles saving and
- * loading
+ * A class storing a list of Tasks, is serializable.
  */
 public class TaskList implements Serializable {
   private ArrayList<Task> tasks;
+  private String saveFile;
 
   public TaskList() {
+    this("lmbd.save");
+  }
+
+  public TaskList(String saveFile) {
+    this.saveFile = saveFile;
     tasks = new ArrayList<>();
+  }
+
+  public String getSaveFile() {
+    return saveFile;
   }
 
   /** Get number of tasks in the list */
@@ -28,18 +37,23 @@ public class TaskList implements Serializable {
   public void addTask(Task t) {
     t.associateList(this);
     tasks.add(t);
-    try {
-      Storage.save(this);
-    } catch (IOException e) {
-      System.out.println("Unable to backup task list, your data might be lost.");
-    }
+    save();
   }
 
   public boolean mark(int index, boolean isMarked) {
     boolean m = tasks.get(index).isDone();
     tasks.get(index).mark(isMarked);
+    save();
 
     return m != isMarked;
+  }
+
+  public void save() {
+    try {
+      Storage.save(this);
+    } catch (IOException e) {
+      System.out.println("Unable to backup task list, your data might be lost.");
+    }
   }
 
   public boolean isMarked(int index) {

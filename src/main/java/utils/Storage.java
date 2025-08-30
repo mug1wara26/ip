@@ -11,9 +11,9 @@ import task.TaskList;
 public class Storage {
   private static final String SAVE_PATH = "lmbd.save";
 
-  /** Serialises and writes to a save file named lmbd.save */
+  /** Serialises and writes to a save file named specified by the task list */
   public static void save(TaskList taskList) throws IOException {
-    FileOutputStream fileOutputStream = new FileOutputStream(SAVE_PATH);
+    FileOutputStream fileOutputStream = new FileOutputStream(taskList.getSaveFile());
     ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
     objectOutputStream.writeObject(taskList);
     objectOutputStream.flush();
@@ -26,7 +26,11 @@ public class Storage {
    * @return Deserialised TaskList
    */
   public static TaskList load() throws IOException, ClassNotFoundException {
-    FileInputStream fileInputStream = new FileInputStream(SAVE_PATH);
+    return load(SAVE_PATH);
+  }
+
+  public static TaskList load(String saveFile) throws IOException, ClassNotFoundException {
+    FileInputStream fileInputStream = new FileInputStream(saveFile);
     ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
     TaskList ret = (TaskList) objectInputStream.readObject();
     objectInputStream.close();

@@ -1,6 +1,7 @@
 package utils;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterAll;
 
 import command.ByeCommand;
 import command.MarkCommand;
@@ -9,35 +10,41 @@ import task.TaskList;
 import ui.Lmbd;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 
 public class StorageTest {
   private Lmbd lmbd;
+  private static final String SAVE_PATH = "StorageTest.save";
 
   public StorageTest() {
-    System.setIn(new ByteArrayInputStream("todo test\n".getBytes()));
-    System.setIn(new ByteArrayInputStream("todo test2\n".getBytes()));
-    System.setIn(new ByteArrayInputStream("mark 2\n".getBytes()));
-    System.setIn(new ByteArrayInputStream("bye\n".getBytes()));
-    lmbd = new Lmbd(new TodoCommand(), new MarkCommand(), new ByeCommand());
+    System.setIn(new ByteArrayInputStream("todo test\ntodo test2\nmark 2\nbye\n".getBytes()));
+    lmbd = new Lmbd(SAVE_PATH, new TodoCommand(), new MarkCommand(), new ByeCommand());
+    System.out.println(lmbd.TASKS.getSaveFile());
     lmbd.listen();
   }
 
   @Test
   public void saveAndLoad_todoEvents_loadTodoEvents() {
     try {
-      TaskList tl = Storage.load();
+      TaskList tl = Storage.load(SAVE_PATH);
       assertEquals(2, tl.getTaskSize(), "Expected task size to be 2");
-      assertEquals("test", tl.getTaskToString(1), "Expected name of first task to be \"test\"");
-      assertEquals("test2", tl.getTaskToString(2), "Expected name of first task to be \"test2\"");
-      assertEquals(false, tl.isMarked(1), "Expected first task to not be marked as done");
-      assertEquals(true, tl.isMarked(2), "Expected second task to be marked as done");
+      assertEquals("test", tl.getTaskTitle(0), "Expected name of first task to be \"test\"");
+      assertEquals("test2", tl.getTaskTitle(1), "Expected name of second task to be \"test2\"");
+      assertEquals(false, tl.isMarked(0), "Expected first task to not be marked as done");
+      assertEquals(true, tl.isMarked(1), "Expected second task to be marked as done");
     } catch (ClassNotFoundException e) {
-      assertEquals(false, true, e.getMessage());
+      fail(e.getMessage());
     } catch (IOException e) {
-      assertEquals(false, true, e.getMessage());
+      fail(e.getMessage());
     }
+  }
+
+  @AfterAll
+  public static void cleanup() {
+    (new File(SAVE_PATH)).delete();
   }
 }
