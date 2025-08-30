@@ -2,8 +2,8 @@ package command;
 
 import ui.Lmbd;
 
-public class DisplayList extends Command {
-  public DisplayList() {
+public class ListCommand extends Command {
+  public ListCommand() {
     super("list", 0, "Displays the list of tasks");
   }
 
