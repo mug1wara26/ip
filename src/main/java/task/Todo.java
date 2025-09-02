@@ -1,17 +1,17 @@
 package task;
 
 public class Todo extends Task {
-  public Todo(String name) {
-    super(name);
-  }
+    public Todo(String name) {
+        super(name);
+    }
 
-  @Override
-  public String taskTitle() {
-    return getName();
-  }
+    @Override
+    public String taskTitle() {
+        return getName();
+    }
 
-  @Override
-  protected char typeChar() {
-    return 'T';
-  }
+    @Override
+    protected char typeChar() {
+        return 'T';
+    }
 }

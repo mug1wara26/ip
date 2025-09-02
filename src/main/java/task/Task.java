@@ -12,57 +12,57 @@ import utils.Storage;
  * instantiation
  */
 public abstract class Task implements Serializable {
-  private String name;
-  private boolean done;
-  private TaskList tl;
+    private String name;
+    private boolean done;
+    private TaskList tl;
 
-  public Task(String name) {
-    this.name = name;
-    this.done = false;
-  }
-
-  /** Returns the name of this class */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * Marks this task as done or not, associateList must be called before this
-   * function is called
-   */
-  public void mark(boolean done) {
-    this.done = done;
-    try {
-      Storage.save(tl);
-    } catch (IOException e) {
-      System.out.println("Unable to backup task list, your data might be lost.");
+    public Task(String name) {
+        this.name = name;
+        this.done = false;
     }
-  }
 
-  /**
-   * Associates the given TaskList to this class so that TaskList.save can be
-   * called
-   */
-  public void associateList(TaskList tl) {
-    this.tl = tl;
-  }
+    /** Returns the name of this class */
+    public String getName() {
+        return name;
+    }
 
-  /** Whether this task is marked as done or not */
-  public boolean isDone() {
-    return done;
-  }
+    /**
+     * Marks this task as done or not, associateList must be called before this
+     * function is called
+     */
+    public void mark(boolean done) {
+        this.done = done;
+        try {
+            Storage.save(tl);
+        } catch (IOException e) {
+            System.out.println("Unable to backup task list, your data might be lost.");
+        }
+    }
 
-  public boolean match(String pattern) {
-    return Pattern.matches(pattern, name);
-  }
+    /**
+     * Associates the given TaskList to this class so that TaskList.save can be
+     * called
+     */
+    public void associateList(TaskList tl) {
+        this.tl = tl;
+    }
 
-  /** The title of this task */
-  abstract public String taskTitle();
+    /** Whether this task is marked as done or not */
+    public boolean isDone() {
+        return done;
+    }
 
-  abstract protected char typeChar();
+    public boolean match(String pattern) {
+        return Pattern.matches(pattern, name);
+    }
 
-  @Override
-  public String toString() {
-    return String.format("[%s][%s] %s", typeChar(), done ? "X" : " ", taskTitle());
-  }
+    /** The title of this task */
+    public abstract String taskTitle();
+
+    protected abstract char typeChar();
+
+    @Override
+    public String toString() {
+        return String.format("[%s][%s] %s", typeChar(), done ? "X" : " ", taskTitle());
+    }
 }

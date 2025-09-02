@@ -3,38 +3,42 @@ package command;
 import ui.Lmbd;
 
 public abstract class Command {
-  private String cmd;
-  private String helpText;
-  private int numRequiredArgs;
+    private String cmd;
+    private String helpText;
+    private int numRequiredArgs;
 
-  public Command(String cmd, int numRequiredArgs, String help_text) {
-    this.cmd = cmd;
-    this.numRequiredArgs = numRequiredArgs;
-    this.helpText = help_text;
-  }
+    public Command(String cmd, int numRequiredArgs, String helpText) {
+        this.cmd = cmd;
+        this.numRequiredArgs = numRequiredArgs;
+        this.helpText = helpText;
+    }
 
-  /**
-   * Runs this command using the arguments
-   * 
-   * @param lmbd The Lmbd object that received this command
-   * @param args An array of arguments following the command, separated by spaces
-   */
-  public void call(Lmbd lmbd, String[] args) {
-    if (args.length < numRequiredArgs)
-      System.out.println(String.format("%s command requires at least %d args", cmd, numRequiredArgs));
-    else
-      call_(lmbd, args);
-  }
+    /**
+     * Runs this command using the arguments
+     *
+     * @param lmbd
+     *            The Lmbd object that received this command
+     * @param args
+     *            An array of arguments following the command, separated by spaces
+     */
+    public void call(Lmbd lmbd, String[] args) {
+        if (args.length < numRequiredArgs) {
 
-  abstract void call_(Lmbd lmbd, String[] args);
+            System.out.println(String.format("%s command requires at least %d args", cmd, numRequiredArgs));
+        } else {
+            run(lmbd, args);
+        }
+    }
 
-  /** Returns the help text for this command */
-  public String getHelpText() {
-    return helpText;
-  }
+    abstract void run(Lmbd lmbd, String[] args);
 
-  /** Returns the string that calls this command */
-  public String getCmd() {
-    return cmd;
-  }
+    /** Returns the help text for this command */
+    public String getHelpText() {
+        return helpText;
+    }
+
+    /** Returns the string that calls this command */
+    public String getCmd() {
+        return cmd;
+    }
 }

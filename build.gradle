@@ -2,6 +2,8 @@ plugins {
     id 'java'
     id 'application'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
+    id 'checkstyle'
+    id("com.diffplug.spotless") version "7.2.1"
 }
 
 repositories {
@@ -25,6 +27,21 @@ test {
         showStackTraces true
         showStandardStreams = true
     }
+}
+
+checkstyle {
+    toolVersion = '11.0.0'
+    sourceSets = []
+}
+
+spotless {
+  java {
+    cleanthat()
+    eclipse().configFile("./config/eclipse-formatter.xml")
+    importOrder("java.", "javax.", "org.", "com.", "")
+    removeUnusedImports()
+    formatAnnotations()
+  }
 }
 
 application {
