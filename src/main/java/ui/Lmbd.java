@@ -89,7 +89,7 @@ public class Lmbd {
 
     /**
      * Prints a greeting message
-     * 
+     *
      * @deprecated No longer in use since JavaFX was introduced
      */
     @Deprecated
@@ -105,7 +105,7 @@ public class Lmbd {
 
     /**
      * Starts listening for commands from stdin
-     * 
+     *
      * @deprecated No longer in use since JavaFX was introduced
      */
     @Deprecated
