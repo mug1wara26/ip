@@ -1,5 +1,8 @@
 package command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ui.Lmbd;
 
 public class ListCommand extends Command {
@@ -8,10 +11,13 @@ public class ListCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
-        System.out.println(String.format("You have %d tasks:", lmbd.tasks.getTaskSize()));
+    String run(Lmbd lmbd, String[] args) {
+        List<String> lines = new ArrayList<>();
+        lines.add(String.format("You have %d tasks:", lmbd.tasks.getTaskSize()));
         for (int i = 0; i < lmbd.tasks.getTaskSize(); i++) {
-            System.out.println(String.format("%d. %s", i + 1, lmbd.tasks.getTaskToString(i)));
+            lines.add(String.format("%d. %s", i + 1, lmbd.tasks.getTaskToString(i)));
         }
+
+        return String.join("\n", lines);
     }
 }

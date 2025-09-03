@@ -13,7 +13,7 @@ public class DeadlineCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
+    String run(Lmbd lmbd, String[] args) {
         StringBuilder name = new StringBuilder();
         int curr = 0;
         while (curr < args.length && !args[curr].equals("/by")) {
@@ -23,8 +23,7 @@ public class DeadlineCommand extends Command {
         name.deleteCharAt(name.length() - 1);
 
         if (curr == args.length) {
-            System.out.println("Expected /by, reached end of line instead");
-            return;
+            return "Expected /by, reached end of line instead";
         }
 
         curr += 1;
@@ -39,13 +38,12 @@ public class DeadlineCommand extends Command {
         try {
             byDate = LocalDate.parse(by);
         } catch (DateTimeParseException e) {
-            System.out.println("Expected a date in YYYY-MM-DD format");
-            return;
+            return "Expected a date in YYYY-MM-DD format";
         }
 
         Task t = new Deadline(name.toString(), byDate);
         lmbd.tasks.addTask(t);
-        System.out.println(String.format("Added the DEADLINE task %s, you now have %d tasks.", t.taskTitle(),
-            lmbd.tasks.getTaskSize()));
+        return String.format("Added the DEADLINE task %s, you now have %d tasks.", t.taskTitle(),
+            lmbd.tasks.getTaskSize());
     }
 }

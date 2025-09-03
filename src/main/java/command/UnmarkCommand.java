@@ -8,20 +8,18 @@ public class UnmarkCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
+    String run(Lmbd lmbd, String[] args) {
         int id = Integer.valueOf(args[0]) - 1;
         if (id < 0 || id >= lmbd.tasks.getTaskSize()) {
-            System.out.println("Invalid id");
-            return;
+            return "Invalid id";
         }
 
         boolean success = lmbd.tasks.mark(id, false);
 
         if (!success) {
-            System.out.println(String.format("Task \"%s\" is not done, unable to unmark", lmbd.tasks.getTaskTitle(id)));
-            return;
+            return String.format("Task \"%s\" is not done, unable to unmark", lmbd.tasks.getTaskTitle(id));
         }
 
-        System.out.println(String.format("The task \"%s\" has been unmarked.", lmbd.tasks.getTaskTitle(id)));
+        return String.format("The task \"%s\" has been unmarked.", lmbd.tasks.getTaskTitle(id));
     }
 }

@@ -13,7 +13,7 @@ public class EventCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
+    String run(Lmbd lmbd, String[] args) {
         StringBuilder name = new StringBuilder();
         int curr = 0;
         while (curr < args.length && !args[curr].equals("/from")) {
@@ -23,8 +23,7 @@ public class EventCommand extends Command {
         name.deleteCharAt(name.length() - 1);
 
         if (curr == args.length) {
-            System.out.println("Expected /from, reached end of line instead");
-            return;
+            return "Expected /from, reached end of line instead";
         }
 
         curr += 1;
@@ -36,8 +35,7 @@ public class EventCommand extends Command {
         from.deleteCharAt(from.length() - 1);
 
         if (curr == args.length) {
-            System.out.println("Expected /to, reached end of line instead");
-            return;
+            return "Expected /to, reached end of line instead";
         }
 
         curr += 1;
@@ -52,20 +50,18 @@ public class EventCommand extends Command {
         try {
             fromDate = LocalDate.parse(from);
         } catch (DateTimeParseException e) {
-            System.out.println("Expected \"from\" to be in YYYY-MM-DD format");
-            return;
+            return "Expected \"from\" to be in YYYY-MM-DD format";
         }
         LocalDate toDate;
         try {
             toDate = LocalDate.parse(to);
         } catch (DateTimeParseException e) {
-            System.out.println("Expected \"to\" to be in YYYY-MM-DD format");
-            return;
+            return "Expected \"to\" to be in YYYY-MM-DD format";
         }
 
         Task t = new Event(name.toString(), fromDate, toDate);
         lmbd.tasks.addTask(t);
-        System.out.println(
-            String.format("Added the EVENT task %s, you now have %d tasks.", t.taskTitle(), lmbd.tasks.getTaskSize()));
+        return String.format("Added the EVENT task %s, you now have %d tasks.", t.taskTitle(),
+            lmbd.tasks.getTaskSize());
     }
 }

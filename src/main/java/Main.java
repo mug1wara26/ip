@@ -1,29 +1,31 @@
-import command.ByeCommand;
-import command.Command;
-import command.DeadlineCommand;
-import command.EventCommand;
-import command.FindCommand;
-import command.HelpCommand;
-import command.ListCommand;
-import command.MarkCommand;
-import command.RemoveCommand;
-import command.TodoCommand;
-import command.UnmarkCommand;
+import java.io.IOException;
+
+import controllers.MainWindow;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import ui.Lmbd;
 
-public class Main {
-    public static void main(String[] args) {
-        String logo = "██╗     ███╗   ███╗██████╗ ██████╗ \n" + "██║     ████╗ ████║██╔══██╗██╔══██╗\n"
-            + "██║     ██╔████╔██║██████╔╝██║  ██║\n" + "██║     ██║╚██╔╝██║██╔══██╗██║  ██║\n"
-            + "███████╗██║ ╚═╝ ██║██████╔╝██████╔╝\n" + "╚══════╝╚═╝     ╚═╝╚═════╝ ╚═════╝ \n";
-        System.out.println(logo);
+/**
+ * A GUI for Duke using FXML.
+ */
+public class Main extends Application {
 
-        Command[] cmds = new Command[]{new HelpCommand(), new ByeCommand(), new ListCommand(), new MarkCommand(),
-            new UnmarkCommand(), new TodoCommand(), new EventCommand(), new DeadlineCommand(), new RemoveCommand(),
-            new FindCommand()};
-        Lmbd lmbd = new Lmbd(cmds);
+    private Lmbd lmbd = new Lmbd();
 
-        lmbd.greet();
-        lmbd.listen();
+    @Override
+    public void start(Stage stage) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
+            AnchorPane ap = fxmlLoader.load();
+            Scene scene = new Scene(ap);
+            stage.setScene(scene);
+            fxmlLoader.<MainWindow>getController().setLmbd(lmbd);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

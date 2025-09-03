@@ -1,5 +1,8 @@
 package command;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ui.Lmbd;
 
 public class HelpCommand extends Command {
@@ -8,16 +11,18 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
+    String run(Lmbd lmbd, String[] args) {
+        List<String> lines = new ArrayList<>();
         if (args.length == 0) {
-            System.out.println("Here are a list of commands:");
+            lines.add("Here are a list of commands:");
             for (Command cmd : lmbd.getCommands()) {
-                System.out.println(String.format("%s - %s", cmd.getCmd(), cmd.getHelpText()));
+                lines.add(String.format("%s - %s", cmd.getCmd(), cmd.getHelpText()));
             }
+            return String.join("\n", lines);
         } else if (lmbd.isCommand(args[0])) {
-            System.out.println(lmbd.getCommand(args[0]).getHelpText());
+            return lmbd.getCommand(args[0]).getHelpText();
         } else {
-            System.out.println(String.format("Command %s not found", args[0]));
+            return String.format("Command %s not found", args[0]);
         }
     }
 }

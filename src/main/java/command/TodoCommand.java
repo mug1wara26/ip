@@ -9,10 +9,9 @@ public class TodoCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
+    String run(Lmbd lmbd, String[] args) {
         String name = String.join(" ", args);
         lmbd.tasks.addTask(new Todo(name));
-        System.out
-            .println(String.format("Added the TODO task %s, you now have %d tasks.", name, lmbd.tasks.getTaskSize()));
+        return String.format("Added the TODO task %s, you now have %d tasks.", name, lmbd.tasks.getTaskSize());
     }
 }

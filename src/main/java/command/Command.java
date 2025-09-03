@@ -21,16 +21,16 @@ public abstract class Command {
      * @param args
      *            An array of arguments following the command, separated by spaces
      */
-    public void call(Lmbd lmbd, String[] args) {
+    public String call(Lmbd lmbd, String[] args) {
         if (args.length < numRequiredArgs) {
 
-            System.out.println(String.format("%s command requires at least %d args", cmd, numRequiredArgs));
+            return String.format("%s command requires at least %d args", cmd, numRequiredArgs);
         } else {
-            run(lmbd, args);
+            return run(lmbd, args);
         }
     }
 
-    abstract void run(Lmbd lmbd, String[] args);
+    abstract String run(Lmbd lmbd, String[] args);
 
     /** Returns the help text for this command */
     public String getHelpText() {

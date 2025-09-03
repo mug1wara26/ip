@@ -1,5 +1,6 @@
 package command;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import task.Task;
@@ -11,10 +12,13 @@ public class FindCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
+    String run(Lmbd lmbd, String[] args) {
         List<Task> tasks = lmbd.tasks.find(String.join(" ", args));
+        List<String> lines = new ArrayList<>();
         for (int i = 0; i < tasks.size(); i++) {
-            System.out.println(String.format("%d. %s", i + 1, tasks.get(i)));
+            lines.add(String.format("%d. %s\n", i + 1, tasks.get(i)));
         }
+
+        return String.join("\n", lines);
     }
 }

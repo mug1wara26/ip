@@ -8,9 +8,8 @@ public class ByeCommand extends Command {
     }
 
     @Override
-    void run(Lmbd lmbd, String[] args) {
-        System.out.println("Bye. Hope to see you again soon!");
-        lmbd.printHorizontalBar();
+    String run(Lmbd lmbd, String[] args) {
         lmbd.exit();
+        return "Bye. Hope to see you again soon!";
     }
 }

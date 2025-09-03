@@ -6,7 +6,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import command.ByeCommand;
 import command.Command;
+import command.DeadlineCommand;
+import command.EventCommand;
+import command.FindCommand;
+import command.HelpCommand;
+import command.ListCommand;
+import command.MarkCommand;
+import command.RemoveCommand;
+import command.TodoCommand;
+import command.UnmarkCommand;
 import task.TaskList;
 import utils.Storage;
 
@@ -24,6 +34,13 @@ public class Lmbd {
     private final Map<String, Command> commands = new HashMap<>();
 
     private boolean exit = false;
+
+    public Lmbd() {
+        this("lmbd.save",
+            new Command[]{new HelpCommand(), new ByeCommand(), new ListCommand(), new MarkCommand(),
+                new UnmarkCommand(), new TodoCommand(), new EventCommand(), new DeadlineCommand(), new RemoveCommand(),
+                new FindCommand()});
+    }
 
     /**
      * Creates a Lmbd object from the specified commands Uses the default lmbd.save
@@ -70,12 +87,12 @@ public class Lmbd {
         return commands.containsKey(cmdName);
     }
 
-    /** Prints a horizontal bar */
-    public void printHorizontalBar() {
-        System.out.println("____________________________________________________________");
-    }
-
-    /** Prints a greeting message */
+    /**
+     * Prints a greeting message
+     * 
+     * @deprecated No longer in use since JavaFX was introduced
+     */
+    @Deprecated
     public void greet() {
         System.out.println("Hello! I'm LMBD. What can I do for you?");
     }
@@ -86,10 +103,14 @@ public class Lmbd {
         sc.close();
     }
 
-    /** Starts listening for commands from stdin */
+    /**
+     * Starts listening for commands from stdin
+     * 
+     * @deprecated No longer in use since JavaFX was introduced
+     */
+    @Deprecated
     public void listen() {
         while (!exit) {
-            printHorizontalBar();
             System.out.print("$ ");
             if (sc.hasNextLine()) {
                 String[] in = sc.nextLine().split(" ");
@@ -100,14 +121,17 @@ public class Lmbd {
         }
     }
 
-    private void handleCommand(String cmdString, String[] args) {
-        printHorizontalBar();
+    public String getResponse(String input) {
+        String[] in = input.split(" ");
+        return handleCommand(in[0], Arrays.copyOfRange(in, 1, in.length));
+    }
+
+    private String handleCommand(String cmdString, String[] args) {
         Command command = commands.getOrDefault(cmdString, null);
         if (command == null) {
-            System.out.println(String.format("Unrecognised command: %s", cmdString));
-            return;
+            return String.format("Unrecognised command: %s", cmdString);
         }
 
-        command.call(this, args);
+        return command.call(this, args);
     }
 }

@@ -23,8 +23,10 @@ public class StorageTest {
     public StorageTest() {
         System.setIn(new ByteArrayInputStream("todo test\ntodo test2\nmark 2\nbye\n".getBytes()));
         lmbd = new Lmbd(SAVE_PATH, new TodoCommand(), new MarkCommand(), new ByeCommand());
-        System.out.println(lmbd.tasks.getSaveFile());
-        lmbd.listen();
+        lmbd.getResponse("todo test");
+        lmbd.getResponse("todo test2");
+        lmbd.getResponse("mark 2");
+        lmbd.getResponse("bye");
     }
 
     @Test
