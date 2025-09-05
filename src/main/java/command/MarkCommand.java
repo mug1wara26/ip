@@ -9,16 +9,19 @@ public class MarkCommand extends Command {
 
     @Override
     String run(Lmbd lmbd, String[] args) {
-        int id = Integer.valueOf(args[0]) - 1;
-        if (id < 0 || id >= lmbd.tasks.getTaskSize()) {
-            return "Invalid id";
-        }
-        boolean success = lmbd.tasks.mark(id, true);
+        try {
 
-        if (!success) {
-            return String.format("Task \"%s\" is already done, unable to mark", lmbd.tasks.getTaskTitle(id));
-        }
+            int id = Integer.valueOf(args[0]) - 1;
+            if (id < 0 || id >= lmbd.tasks.getTaskSize()) {
+                return "Invalid id";
+            }
+            if (!lmbd.tasks.mark(id, true)) {
+                return String.format("Task \"%s\" is already done, unable to mark", lmbd.tasks.getTaskTitle(id));
+            }
 
-        return String.format("The task \"%s\" has been marked as done.", lmbd.tasks.getTaskTitle(id));
+            return String.format("The task \"%s\" has been marked as done.", lmbd.tasks.getTaskTitle(id));
+        } catch (NumberFormatException e) {
+            return "Expected a number";
+        }
     }
 }
