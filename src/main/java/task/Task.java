@@ -63,6 +63,8 @@ public abstract class Task implements Serializable {
 
     @Override
     public String toString() {
+        // typeChar should only be an ASCII uppercase letter
+        assert (typeChar() >= 65 && typeChar() <= 91);
         return String.format("[%s][%s] %s", typeChar(), done ? "X" : " ", taskTitle());
     }
 }
