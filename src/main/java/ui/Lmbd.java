@@ -6,17 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import command.ByeCommand;
 import command.Command;
-import command.DeadlineCommand;
-import command.EventCommand;
-import command.FindCommand;
-import command.HelpCommand;
-import command.ListCommand;
-import command.MarkCommand;
-import command.RemoveCommand;
-import command.TodoCommand;
-import command.UnmarkCommand;
+import command.CommandRegistry;
 import task.TaskList;
 import utils.Storage;
 
@@ -36,10 +27,7 @@ public class Lmbd {
     private boolean exit = false;
 
     public Lmbd() {
-        this("lmbd.save",
-            new Command[]{new HelpCommand(), new ByeCommand(), new ListCommand(), new MarkCommand(),
-                new UnmarkCommand(), new TodoCommand(), new EventCommand(), new DeadlineCommand(), new RemoveCommand(),
-                new FindCommand()});
+        this("lmbd.save", CommandRegistry.getCommands());
     }
 
     /**
