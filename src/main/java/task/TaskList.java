@@ -12,6 +12,7 @@ import utils.Storage;
 public class TaskList implements Serializable {
     private ArrayList<Task> tasks;
     private String saveFile;
+    private boolean isSaveable;
 
     public TaskList() {
         this("lmbd.save");
@@ -47,6 +48,9 @@ public class TaskList implements Serializable {
     }
 
     public void save() {
+        if (!isSaveable) {
+            return;
+        }
         try {
             Storage.save(this);
         } catch (IOException e) {
@@ -73,5 +77,9 @@ public class TaskList implements Serializable {
 
     public List<Task> find(String pattern) {
         return tasks.stream().filter(x -> x.match(pattern)).collect(Collectors.toList());
+    }
+
+    public void setIsSaveable(boolean s) {
+        this.isSaveable = s;
     }
 }

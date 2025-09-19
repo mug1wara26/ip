@@ -15,6 +15,8 @@ import utils.Storage;
 public class Lmbd {
     /** A TaskList object associated with this class */
     public final TaskList tasks;
+    /** A static flag that disables loading the TaskList */
+    private static boolean isLoadable = true;
 
     private Scanner sc = new Scanner(System.in);
 
@@ -43,6 +45,15 @@ public class Lmbd {
      * file
      */
     public Lmbd(String saveFile, Command... cmds) {
+        for (Command command : cmds) {
+            commands.put(command.getCmd(), command);
+        }
+
+        if (!isLoadable) {
+            tasks = new TaskList();
+            return;
+        }
+
         TaskList temp;
         try {
             temp = Storage.load(saveFile);
@@ -51,10 +62,6 @@ public class Lmbd {
         }
 
         tasks = temp;
-
-        for (Command command : cmds) {
-            commands.put(command.getCmd(), command);
-        }
     }
 
     /** Returns the commands stored in this Lmbd object */
@@ -91,6 +98,10 @@ public class Lmbd {
         sc.close();
     }
 
+    public boolean isExit() {
+        return exit;
+    }
+
     /**
      * Starts listening for commands from stdin
      *
@@ -121,5 +132,17 @@ public class Lmbd {
         }
 
         return command.call(this, args);
+    }
+
+    public void setTaskListSaveable(boolean s) {
+        tasks.setIsSaveable(s);
+    }
+
+    public static void disableLoading() {
+        isLoadable = false;
+    }
+
+    public static void enable() {
+        isLoadable = true;
     }
 }

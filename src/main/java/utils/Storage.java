@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -13,6 +14,17 @@ public class Storage {
 
     /** Serialises and writes to a save file named specified by the task list */
     public static void save(TaskList taskList) throws IOException {
+        File saveFile = new File(taskList.getSaveFile());
+
+        try {
+            if (saveFile.getParentFile() != null && !saveFile.getParentFile().exists()) {
+                saveFile.getParentFile().mkdirs();
+            }
+        } catch (SecurityException e) {
+            System.out.println("Unable to create parent directories while saving file");
+            System.out.println(e.getMessage());
+        }
+
         FileOutputStream fileOutputStream = new FileOutputStream(taskList.getSaveFile());
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
         objectOutputStream.writeObject(taskList);
