@@ -12,7 +12,7 @@ import utils.Storage;
 public class TaskList implements Serializable {
     private ArrayList<Task> tasks;
     private String saveFile;
-    private boolean isSaveable;
+    private boolean isSaveable = true;
 
     public TaskList() {
         this("lmbd.save");
