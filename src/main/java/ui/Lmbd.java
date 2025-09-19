@@ -96,10 +96,7 @@ public class Lmbd {
     public void exit() {
         exit = true;
         sc.close();
-    }
-
-    public boolean isExit() {
-        return exit;
+        System.exit(0);
     }
 
     /**
