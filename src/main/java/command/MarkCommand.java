@@ -2,6 +2,10 @@ package command;
 
 import ui.Lmbd;
 
+/**
+ * Represents a command to mark a specific task as done in the Lmbd application.
+ * It requires the 1-based index of the task to be marked.
+ */
 public class MarkCommand extends Command {
     public MarkCommand() {
         super("mark", 1, "Marks the task associated with the number as done");

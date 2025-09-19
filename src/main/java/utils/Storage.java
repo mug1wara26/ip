@@ -9,10 +9,16 @@ import java.io.ObjectOutputStream;
 
 import task.TaskList;
 
+/**
+ * Handles saving and loading save files corresponding to serialised TaskLists
+ */
 public class Storage {
     private static final String SAVE_PATH = "lmbd.save";
 
-    /** Serialises and writes to a save file named specified by the task list */
+    /**
+     * Serialises and writes to a save file named specified by the task list.
+     * Creates the file and parent directories if it does not exist.
+     */
     public static void save(TaskList taskList) throws IOException {
         File saveFile = new File(taskList.getSaveFile());
 

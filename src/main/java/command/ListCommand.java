@@ -5,6 +5,10 @@ import java.util.List;
 
 import ui.Lmbd;
 
+/**
+ * Represents a command to display all tasks currently stored in the Lmbd
+ * application's task list. It presents tasks as a numbered list.
+ */
 public class ListCommand extends Command {
     public ListCommand() {
         super("list", 0, "Displays the list of tasks");

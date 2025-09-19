@@ -3,6 +3,10 @@ package command;
 import task.Task;
 import ui.Lmbd;
 
+/**
+ * Represents a command to remove a task from the Lmbd application's task list.
+ * It requires the 1-based index of the task to be removed.
+ */
 public class RemoveCommand extends Command {
     public RemoveCommand() {
         super("remove", 1, "Removes the task from the list with the associated number");

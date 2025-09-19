@@ -7,6 +7,11 @@ import task.Deadline;
 import task.Task;
 import ui.Lmbd;
 
+/**
+ * Represents a command to create and add a new {@link Deadline} task to the
+ * Lmbd application's task list. This command requires a task description and a
+ * due date specified with "/by".
+ */
 public class DeadlineCommand extends Command {
     public DeadlineCommand() {
         super("deadline", 1, "Creates a new DEADLINE task");

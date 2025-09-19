@@ -2,11 +2,29 @@ package command;
 
 import ui.Lmbd;
 
+/**
+ * An abstract base class for all commands in the Lmbd application. It defines
+ * the common structure and behavior for commands, including their command word,
+ * required arguments, and help text. Concrete command classes must implement
+ * the {@code run} method to define their specific execution logic.
+ */
 public abstract class Command {
     private String cmd;
     private String helpText;
     private int numRequiredArgs;
 
+    /**
+     * Command constructor
+     *
+     * @param cmd
+     *            The word to call this command
+     *
+     * @param numRequiredArgs
+     *            The minimum number of required arguments
+     *
+     * @param helpText
+     *            A short help text to be displayed with the help command
+     */
     public Command(String cmd, int numRequiredArgs, String helpText) {
         this.cmd = cmd;
         this.numRequiredArgs = numRequiredArgs;

@@ -7,6 +7,11 @@ import task.Event;
 import task.Task;
 import ui.Lmbd;
 
+/**
+ * Represents a command to create and add a new {@link Event} task to the Lmbd
+ * application's task list. This command requires a task description, a start
+ * date with "/from", and an end date with "/to".
+ */
 public class EventCommand extends Command {
     public EventCommand() {
         super("event", 1, "Creates a new EVENT task");

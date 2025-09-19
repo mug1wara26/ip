@@ -14,9 +14,9 @@ import utils.Storage;
 /** The main chatbot class, start the bot by calling the listen function */
 public class Lmbd {
     /** A TaskList object associated with this class */
+    private static boolean isLoadable = true;
     public final TaskList tasks;
     /** A static flag that disables loading the TaskList */
-    private static boolean isLoadable = true;
 
     private Scanner sc = new Scanner(System.in);
 

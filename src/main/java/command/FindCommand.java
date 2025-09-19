@@ -6,6 +6,10 @@ import java.util.List;
 import task.Task;
 import ui.Lmbd;
 
+/**
+ * Represents a command to search for tasks in the Lmbd application's task list.
+ * It finds all tasks whose names match a given regular expression pattern.
+ */
 public class FindCommand extends Command {
     public FindCommand() {
         super("find", 1, "Finds all tasks with a name matching the regex pattern");

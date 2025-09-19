@@ -7,8 +7,8 @@ import task.Task;
 import ui.Lmbd;
 
 public class CommandTest { // Renamed from specific command names for clarity of purpose
-    protected Lmbd lmbd;
     protected static final String SAVE_PATH = "data/test_tasks.txt";
+    protected Lmbd lmbd;
 
     @BeforeEach
     void setUp() {

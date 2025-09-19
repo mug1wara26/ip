@@ -2,6 +2,11 @@ package command;
 
 import ui.Lmbd;
 
+/**
+ * Represents a command to unmark a specific task as not done (incomplete) in
+ * the Lmbd application. It requires the 1-based index of the task to be
+ * unmarked.
+ */
 public class UnmarkCommand extends Command {
     public UnmarkCommand() {
         super("unmark", 1, "Unmarks the task associated with the number as done");

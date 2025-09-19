@@ -5,6 +5,11 @@ import java.util.List;
 
 import ui.Lmbd;
 
+/**
+ * Represents a command to display helpful information about available commands.
+ * It can list all commands with their descriptions or provide details for a
+ * specific command.
+ */
 public class HelpCommand extends Command {
     public HelpCommand() {
         super("help", 0, "Gives a helpful description of a command");

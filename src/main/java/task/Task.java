@@ -16,6 +16,12 @@ public abstract class Task implements Serializable {
     private boolean done;
     private TaskList tl;
 
+    /**
+     * Creates a Task object using the name, with the the task marked as undone
+     *
+     * @param name
+     *            The name for this task
+     */
     public Task(String name) {
         this.name = name;
         this.done = false;
