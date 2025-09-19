@@ -20,6 +20,11 @@ public class DeadlineCommand extends Command {
             name.append(args[curr] + " ");
             curr += 1;
         }
+
+        if (name.length() == 0) {
+            return "The deadline task name cannot be empty.";
+        }
+
         name.deleteCharAt(name.length() - 1);
 
         if (curr == args.length) {
@@ -32,6 +37,11 @@ public class DeadlineCommand extends Command {
             by.append(args[curr] + " ");
             curr += 1;
         }
+
+        if (by.length() == 0) {
+            return "The '/by' date cannot be empty.";
+        }
+
         by.deleteCharAt(by.length() - 1);
 
         LocalDate byDate;

@@ -20,6 +20,11 @@ public class EventCommand extends Command {
             name.append(args[curr] + " ");
             curr += 1;
         }
+
+        if (name.length() == 0) {
+            return "The event task name cannot be empty.";
+        }
+
         name.deleteCharAt(name.length() - 1);
 
         if (curr == args.length) {
@@ -32,6 +37,11 @@ public class EventCommand extends Command {
             from.append(args[curr] + " ");
             curr += 1;
         }
+
+        if (from.length() == 0) {
+            return "The '/from' date cannot be empty.";
+        }
+
         from.deleteCharAt(from.length() - 1);
 
         if (curr == args.length) {
@@ -44,6 +54,11 @@ public class EventCommand extends Command {
             to.append(args[curr] + " ");
             curr += 1;
         }
+
+        if (to.length() == 0) {
+            return "The '/to' date cannot be empty.";
+        }
+
         to.deleteCharAt(to.length() - 1);
 
         LocalDate fromDate;
