@@ -1,5 +1,6 @@
 package command;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
 import task.Task;
@@ -12,7 +13,14 @@ public class CommandTest { // Renamed from specific command names for clarity of
     @BeforeEach
     void setUp() {
         // Initialize Lmbd with all commands for most tests
+        Lmbd.disableLoading();
         lmbd = new Lmbd(SAVE_PATH, CommandRegistry.getCommands());
+        lmbd.setTaskListSaveable(false);
+    }
+
+    @AfterEach
+    void cleanUp() {
+        Lmbd.enableLoading();
     }
 
     // Helper method to add tasks directly to Lmbd's task list for setup

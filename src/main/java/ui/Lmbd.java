@@ -142,7 +142,7 @@ public class Lmbd {
         isLoadable = false;
     }
 
-    public static void enable() {
+    public static void enableLoading() {
         isLoadable = true;
     }
 }
