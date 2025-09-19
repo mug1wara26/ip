@@ -9,17 +9,19 @@ public class UnmarkCommand extends Command {
 
     @Override
     String run(Lmbd lmbd, String[] args) {
-        int id = Integer.valueOf(args[0]) - 1;
-        if (id < 0 || id >= lmbd.tasks.getTaskSize()) {
-            return "Invalid id";
+        try {
+
+            int id = Integer.valueOf(args[0]) - 1;
+            if (id < 0 || id >= lmbd.tasks.getTaskSize()) {
+                return "Invalid id";
+            }
+            if (!lmbd.tasks.mark(id, true)) {
+                return String.format("Task \"%s\" is not done, unable to unmark", lmbd.tasks.getTaskTitle(id));
+            }
+
+            return String.format("The task \"%s\" has been unmarked.", lmbd.tasks.getTaskTitle(id));
+        } catch (NumberFormatException e) {
+            return "Expected a number";
         }
-
-        boolean success = lmbd.tasks.mark(id, false);
-
-        if (!success) {
-            return String.format("Task \"%s\" is not done, unable to unmark", lmbd.tasks.getTaskTitle(id));
-        }
-
-        return String.format("The task \"%s\" has been unmarked.", lmbd.tasks.getTaskTitle(id));
     }
 }
