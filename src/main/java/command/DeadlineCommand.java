@@ -58,7 +58,7 @@ public class DeadlineCommand extends Command {
 
         Task t = new Deadline(name.toString(), byDate);
         lmbd.tasks.addTask(t);
-        return String.format("Added the DEADLINE task %s, you now have %d tasks.", t.taskTitle(),
+        return String.format("Added the DEADLINE task %s, you now have %d tasks.", t.getTaskTitle(),
             lmbd.tasks.getTaskSize());
     }
 }

@@ -27,7 +27,7 @@ public class Event extends Task {
     }
 
     @Override
-    public String taskTitle() {
+    public String getTaskTitle() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d yyyy");
         return String.format("%s (from: %s, to: %s)", getName(), from.format(formatter), to.format(formatter));
     }

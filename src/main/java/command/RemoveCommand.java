@@ -21,7 +21,7 @@ public class RemoveCommand extends Command {
             }
             Task t = lmbd.tasks.removeTask(id);
 
-            return String.format("The task \"%s\" has been removed.", t.taskTitle());
+            return String.format("The task \"%s\" has been removed.", t.getTaskTitle());
         } catch (NumberFormatException e) {
             return "Expected a number";
         }

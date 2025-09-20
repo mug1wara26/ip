@@ -116,7 +116,7 @@ public class TaskList implements Serializable {
      *             getTaskSize()).
      */
     public String getTaskTitle(int index) {
-        return tasks.get(index).taskTitle();
+        return tasks.get(index).getTaskTitle();
     }
 
     /**

@@ -24,7 +24,7 @@ public class Deadline extends Task {
     }
 
     @Override
-    public String taskTitle() {
+    public String getTaskTitle() {
         return String.format("%s (by: %s)", getName(), by.format(DateTimeFormatter.ofPattern("MMM d yyyy")));
     }
 

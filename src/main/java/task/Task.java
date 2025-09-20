@@ -13,7 +13,7 @@ import utils.Storage;
  */
 public abstract class Task implements Serializable {
     private String name;
-    private boolean done;
+    private boolean isDone;
     private TaskList tl;
 
     /**
@@ -24,7 +24,7 @@ public abstract class Task implements Serializable {
      */
     public Task(String name) {
         this.name = name;
-        this.done = false;
+        this.isDone = false;
     }
 
     /** Returns the name of this class */
@@ -37,7 +37,7 @@ public abstract class Task implements Serializable {
      * function is called
      */
     public void mark(boolean done) {
-        this.done = done;
+        this.isDone = done;
         try {
             Storage.save(tl);
         } catch (IOException e) {
@@ -55,7 +55,7 @@ public abstract class Task implements Serializable {
 
     /** Whether this task is marked as done or not */
     public boolean isDone() {
-        return done;
+        return isDone;
     }
 
     public boolean match(String pattern) {
@@ -63,7 +63,7 @@ public abstract class Task implements Serializable {
     }
 
     /** The title of this task */
-    public abstract String taskTitle();
+    public abstract String getTaskTitle();
 
     protected abstract char typeChar();
 
@@ -71,6 +71,6 @@ public abstract class Task implements Serializable {
     public String toString() {
         // typeChar should only be an ASCII uppercase letter
         assert (typeChar() >= 65 && typeChar() <= 91);
-        return String.format("[%s][%s] %s", typeChar(), done ? "X" : " ", taskTitle());
+        return String.format("[%s][%s] %s", typeChar(), isDone ? "X" : " ", getTaskTitle());
     }
 }
